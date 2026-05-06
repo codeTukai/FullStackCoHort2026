@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<body id="body">
+    <h2>todo 1</h2>
+    <h2>todo 2</h2>
+    <h2>todo 3</h2>
+    <button onclick="deleteTodo()">
+Delete
+    </button>
+</body>
+<script>
+  function deleteTodo(){
+     const element = document.querySelector("h2")
+
+     const parentElement = element.parentNode.removeChild(element)
+    //  parentElement.removeChild(element)
+
+
+  }
+</script>
+</html>

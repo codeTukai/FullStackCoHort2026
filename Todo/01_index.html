@@ -1,0 +1,26 @@
+<html>
+    <body>
+        <input type="text">
+        <button onclick="addTodo()">Add Todo</button>
+    </body>
+    <script>
+        let ctr = 1;
+        function deleteTodo(index){
+            const element = document.getElementById("todo-" + index)
+            element.parentNode.removeChild(element);
+            
+        }
+        function addTodo(){
+            
+            const addTodos = document.querySelector('input'); //select the index/input
+            const value = addTodos.value; // message like "hi hello" is a value and its inject with the addTodos
+
+            const newDIv = document.createElement("div");
+            newDIv.setAttribute("id", "todo-" + ctr)
+            // newDIv.innerHTML = value
+            newDIv.innerHTML = "<div>" + value + '</div> <button onClick="deleteTodo('+ ctr + ')" > delete </button>';
+            document.querySelector("body").appendChild(newDIv)
+            ctr = ctr+ 1
+         }
+    </script>
+</html>
