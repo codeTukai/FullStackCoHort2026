@@ -1,0 +1,25 @@
+<html>
+    <body>
+        <input type="text"/>
+        <button onclick="addTodo()">Add Todo</button>
+    </body>
+    <script>
+       function addTodo() {
+         const element = document.querySelector("input")
+         const value = element.value
+         console.log(value);
+         
+         const spanEle = document.createElement("span")
+         spanEle.innerHTML = value
+
+         const buttonEle = document.createElement("button")
+         buttonEle.innerHTML = "button"
+         const divEle = document.createElement("div")
+         divEle.appendChild(spanEle)
+         divEle.appendChild(buttonEle)
+         document.querySelector("body").appendChild(divEle)
+         
+       }
+
+    </script>
+</html>
