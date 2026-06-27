@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,8 +12,21 @@
     <script>
       async function fetchingApi(){
 
-        const response = await axios.get("https://jsonplaceholder.typicode.com/posts")
-        document.querySelector("posts").innerHTML = response.data.title
+        const response = await axios.get("https://jsonplaceholder.typicode.com/posts",{
+            Headers:{
+                "Cookie" : "asdsds",
+                "Content-Type": "application/json"
+            }
+        })
+
+        const arr = response.data
+
+        for (let i = 0; i < arr.length; i++) {
+            document.querySelector("posts").innerHTML += ("<div>" + arr[i].body + "</div>")
+            
+        }
+
+        
 
         // console.log("before fetching");
         
@@ -27,5 +40,64 @@
         
         }
     </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Learning</title>
+</head>
+<body>
+
+    <h2>Posts</h2>
+
+    <div id="posts"></div>
+
+    <button onclick="fetchingApi()">Fetch Posts</button>
+
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        async function fetchingApi() {
+
+            try {
+
+                const response = await axios.get(
+                    "https://jsonplaceholder.typicode.com/posts",
+                    {
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    }
+                );
+
+                const arr = response.data;
+
+                const posts = document.querySelector("#posts");
+
+                posts.innerHTML = "";
+
+                for (let i = 0; i < arr.length; i++) {
+
+                    posts.innerHTML += `
+                        <div style="border:1px solid #ccc; padding:10px; margin:10px 0;">
+                            <h3>${arr[i].title}</h3>
+                            <p>${arr[i].body}</p>
+                        </div>
+                    `;
+                }
+
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    </script>
+
 </body>
 </html>
