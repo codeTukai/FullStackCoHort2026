@@ -9,7 +9,7 @@
     posts
 <div id="posts"></div>
 <button onclick="fetchingApi()">Fetching</button>
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
       async function fetchingApi(){
 
         const response = await axios.get("https://jsonplaceholder.typicode.com/posts",{
