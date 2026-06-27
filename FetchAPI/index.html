@@ -8,10 +8,11 @@
 <body>
     posts
 <div id="posts"></div>
+<button onclick="fetchingApi()">Fetching</button>
     <script>
       async function fetchingApi(){
 
-        const response = await axios.get("https://jsonplaceholder.typicode.com/posts/2")
+        const response = await axios.get("https://jsonplaceholder.typicode.com/posts")
         document.querySelector("posts").innerHTML = response.data.title
 
         // console.log("before fetching");
