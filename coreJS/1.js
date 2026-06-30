@@ -41,3 +41,8 @@ function a(name) {
 processUserInput(a);
 
 //*// important notes-- cpu intensive task is mostly important task when its running then all are pending on this time
+
+
+//just for fun
+
+console.log((0.1 + 0.2) === 0.3);
