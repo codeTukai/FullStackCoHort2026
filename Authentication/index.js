@@ -52,13 +52,53 @@ app.post('/sign-in', function(req, res){
 
 
 })
-app.get('/me', function(req, res){
-    const token = req.headers.token
-    const decodeToken = jwt.verify(token, JWT_TOKEN)
 
-    const username = decodeToken.username
+function auth(req, res, next){
+    const token  = req.headers.token
+    const decodedToken = jwt.verify(token, JWT_TOKEN)
 
-    const user = users.find(user=>user.username === username)
+    const req.user = decodedToken.username
+
+    if (!user) {
+        res.status(401, {
+            message: "unauthorize"
+        })
+
+       
+
+    }
+
+     
+     next()
+}
+// function auth(req, res, next) {
+//     const token = req.headers.token;
+
+//     if (!token) {
+//         return res.status(401).json({
+//             message: "Token missing"
+//         });
+//     }
+
+//     try {
+//         const decodedToken = jwt.verify(token, JWT_TOKEN);
+
+//         req.user = decodedToken.username;
+
+//         next();
+//     } catch (err) {
+//         return res.status(401).json({
+//             message: "Invalid token"
+//         });
+//     }
+// }
+app.get('/me',auth, function(req, res){
+    // const token = req.headers.token
+    // const decodeToken = jwt.verify(token, JWT_TOKEN)
+
+    // const username = decodeToken.username
+
+    const user = users.find(user=>user.username === req.user)
 
      if (user) {
         return res.status(200).json({
